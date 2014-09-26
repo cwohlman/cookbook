@@ -16,11 +16,11 @@ CollectionRule.attachSchema(Recipes, {
 		, steps: {
 			isArray: true
 			, schema: {
-				ingredient: [Rule.isString, Rule.minLength(2), Rule.maxLength(120)]
-				, amount: [Rule.isNumber, Rule.minValue(0)]
-				, unit: [Rule.isString]
-				, prep: [Rule.isString, Rule.maxLength(255)]
-				, comments: [Rule.isString]
+				ingredient: [Rule.notEmpty, Rule.isString, Rule.minLength(2), Rule.maxLength(120)]
+				, amount: [Rule.isFinite, Rule.minValue(0)]
+				, unit: [Rule.isString.optional()]
+				, prep: new Rule([Rule.isString, Rule.maxLength(255)]).optional()
+				, comments: Rule.isString.optional()
 			}
 		}
 	}
