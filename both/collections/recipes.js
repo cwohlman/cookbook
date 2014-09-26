@@ -20,7 +20,7 @@ CollectionRule.attachSchema(Recipes, {
 				, amount: [Rule.isFinite, Rule.minValue(0)]
 				, unit: [Rule.isString.optional()]
 				, prep: new Rule([Rule.isString, Rule.maxLength(255)]).optional()
-				, comments: Rule.isString.optional()
+				, comments: Meteor.isClient ? Rule.isString.optional() : Rule.minLength(10).optional()
 			}
 		}
 	}

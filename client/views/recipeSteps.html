@@ -5,6 +5,7 @@
 			label=stepLabel
 			placeholder="A clear description of what to do next, keeping in mind the ingredients will be listed next.\ne.g. Then add:"
 			template="TextAreaInput"
+			helpText="This text area was generated using a custom template defined in this app and referenced by name 'TextAreaInput'"
 			}}
 		<div class="row">
 			<div class="col-sm-3">
@@ -12,6 +13,7 @@
 					name="amount"
 					label="Amount"
 					placeholder="e.g. 2"
+					helpText="Notice that validation occurs only after blur or submit. Try focusing on this input then switching to the next input without filling in the field."
 					}}
 			</div>
 			<div class="col-sm-4">
@@ -19,6 +21,7 @@
 					name="unit"
 					label="Unit"
 					placeholder="e.g. cups"
+					helpText="This field is optional, we don't perform any validation on it if it's value is null or undefined."
 					}}
 			</div>
 			<div class="col-sm-5">
@@ -26,14 +29,21 @@
 					name="ingredient"
 					label="Ingredient"
 					placeholder="e.g. Diced Tomatoes"
+					helpText="This text input is generated using the overriden default template defined in this app by specifying a template named: 'DefaultTextInput'"
 					}}
 			</div>
 		</div>
+		{{>TextInput
+			name="comments"
+			label="Comments"
+			placeholder="Anything related to this step that doesn't really belong in the instructions, for example possible substitutions."
+			template="TextAreaInput"
+			helpText="If you use the attachSchema method the schema will be enforced on the server side using a deny rule, you can test this out by typing a short string (less than 10 characters) into the text area above, the forms validation will succeed, but I've modified the schema so that a slightly different validation will take place on the server side, since we're enforcing the schema in both places, the update will fail."
+			}}
 	{{/each}}
 	<button type="button" href="#" class="btn btn-link btn-add-step">
 		<i class="fa fa-plus"></i>
 		Add a Step
 	</button>
-		<button type="submit" class="btn btn-primary pull-right">Save</button>
-
+	{{> SubmitButtons}}
 </template>

@@ -1,0 +1,26 @@
+<template name="SubmitButtons">
+	<div class="pull-right">
+		{{#each messages}}
+			<div class="has-{{kind}}" style="display: inline-block; margin-right: 15px;">
+				<span class="help-block">
+					{{message}}
+				</span>
+			</div>
+		{{else}}
+			<div class="{{#if _.hasChanges}}
+						has-warning
+					{{else}}
+						
+					{{/if}}" style="display: inline-block; margin-right: 15px;">
+				<span class="help-block">
+					{{#if _.hasChanges}}
+						Don't forget to save your changes
+					{{else}}
+						Unchanged
+					{{/if}}
+				</span>
+			</div>
+		{{/each}}
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+</template>

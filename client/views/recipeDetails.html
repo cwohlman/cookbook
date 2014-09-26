@@ -1,5 +1,14 @@
 <template name="RecipeDetails">
-		{{> TextInput name='name' label='Name'}}
-		{{> TextInput name='description' label='Description' template='TextAreaInput'}}
-		<button type="submit" class="btn btn-primary">Save</button>
+		{{> TextInput
+			name='name'
+			label='Name'
+			helpText='This field is required, try emptying it or saving a new recipe without first filling it in.'
+			}}
+		{{> TextInput
+			name='description'
+			label='Description'
+			template='TextAreaInput'
+			helpText='Each field in this form is generated using a template which provides default handlers for errors and help-text blocks (like this one).'
+			}}
+		{{> SubmitButtons}}
 </template>
