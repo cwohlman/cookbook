@@ -1,0 +1,39 @@
+<template name="RecipeSteps">
+	{{#each steps}}
+		{{>TextInput
+			name="prep"
+			label=stepLabel
+			placeholder="A clear description of what to do next, keeping in mind the ingredients will be listed next.\ne.g. Then add:"
+			template="TextAreaInput"
+			}}
+		<div class="row">
+			<div class="col-sm-3">
+				{{> TextInput
+					name="amount"
+					label="Amount"
+					placeholder="e.g. 2"
+					}}
+			</div>
+			<div class="col-sm-4">
+				{{> TextInput
+					name="unit"
+					label="Unit"
+					placeholder="e.g. cups"
+					}}
+			</div>
+			<div class="col-sm-5">
+				{{> TextInput
+					name="ingredient"
+					label="Ingredient"
+					placeholder="e.g. Diced Tomatoes"
+					}}
+			</div>
+		</div>
+	{{/each}}
+	<button type="button" href="#" class="btn btn-link btn-add-step">
+		<i class="fa fa-plus"></i>
+		Add a Step
+	</button>
+		<button type="submit" class="btn btn-primary pull-right">Save</button>
+
+</template>

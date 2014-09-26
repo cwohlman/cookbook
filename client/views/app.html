@@ -5,10 +5,10 @@
 				{{> RecipeList}}
 			</div>
 			<div class="col-sm-9">
+				{{#Form schema=schema item=recipe}}
 				<ul class="nav nav-tabs" role="tablist">
 				  <li class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
 				  <li><a href="#steps" role="tab" data-toggle="tab">Steps</a></li>
-				  <li><a href="#ingredients" role="tab" data-toggle="tab">Ingredients</a></li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -17,12 +17,10 @@
 						{{> RecipeDetails}}
 					</div>
 					<div class="tab-pane" id="steps">
-						Steps
-					</div>
-					<div class="tab-pane" id="ingredients">
-						Ingredients
+						{{> RecipeSteps}}
 					</div>
 				</div>
+				{{/Form}}
 			</div>
 		</div>
 	</div>
