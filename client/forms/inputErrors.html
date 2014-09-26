@@ -1,0 +1,9 @@
+<template name="InputErrors">
+	{{#if dirty}}
+		<div class="has-error">
+			{{#each errors}}
+				<span class="help-block has-error">{{message}}</span>
+			{{/each}}
+		</div>
+	{{/if}}
+</template>
