@@ -1,5 +1,1 @@
-Template.SubmitButtons.helpers({
-	messages: function () {
-		return Session.get('messages');
-	}
-});
+Template.SubmitButtons.helpers({ });

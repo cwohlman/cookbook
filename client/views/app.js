@@ -10,45 +10,55 @@ Template.App.helpers({
 Template.App.events({
 	'submit form': function () {
 		var self = this;
+		this._.hasPendingSave(true);
+		this._.messages([{
+			kind: 'info'
+			, message: "Saving."
+		}]);
 		if (this._.original) {
 			Recipes.update(this._.original._id, {
 				$set: this._()
 			}, function (error, result) {
 				if (error) {
-					Session.set('messages', [{
+					self._.messages([{
 						kind: 'error'
 						, message: 'Save failed: ' + error.reason
 					}]);
 				} else {
-					Session.set('messages', [
+					self._.messages([
 					{
 						kind: 'success'
 						, message: 'Saved'
 					}
 					]);
+					self._.hasPendingSave(false);
 				}
-				Meteor.setTimeout(function () {Session.set('messages', null);}, 2000);
 			});
 		} else {
 			var recipe = this._();
 			recipe.userId = Meteor.userId();
-			Recipes.insert(recipe, function (error, result) {
+			var id = Recipes.insert(recipe, function (error, result) {
 				if (error) {
-					Session.set('messages', [{
+					self._.messages([{
 						kind: 'error'
 						, message: 'Save failed: ' + error.reason
 					}]);
 				} else {
-					Session.set('messages', [
+					self._.messages([
 					{
 						kind: 'success'
 						, message: 'Saved'
 					}
 					]);
+					self._.hasPendingSave(false);
 				}
-				Meteor.setTimeout(function () {Session.set('messages', null);}, 2000);
 			});
-			
+			Session.set('selectedRecipeId', id);
 		}
+	}
+	, 'click .btn-cancel': function (e, tmpl) {
+		this._.hasPendingSave(false);
+		this._.resetOriginal();
+		this._.resetFormHelpers();
 	}
 });
